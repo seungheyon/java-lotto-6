@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.userIO.ReadInput;
 
 import java.util.List;
 
@@ -17,4 +19,5 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
 }
