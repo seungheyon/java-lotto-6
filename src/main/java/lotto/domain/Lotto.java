@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.userIO.ReadInput;
-
 import java.util.List;
 
 public class Lotto {
