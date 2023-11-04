@@ -1,5 +1,7 @@
 package lotto.userIO;
 
+import java.util.List;
+
 public class Print {
 
     public void toInputBuyAmount(){
@@ -18,4 +20,7 @@ public class Print {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public void boughtLottoList(List<List<Integer>> lottoLists){
+        lottoLists.forEach(System.out::println);
+    }
 }

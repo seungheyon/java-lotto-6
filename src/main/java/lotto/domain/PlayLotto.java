@@ -11,12 +11,16 @@ public class PlayLotto {
     Read read = new Read();
     Convert convert = new Convert();
     Print print = new Print();
+    Publish publish = new Publish();
 
     public void run(){
         print.toInputBuyAmount();
         int amount = read.buyLotto();
         int boughtLotto = amount/1000;
         print.boughtNumber(boughtLotto);
+        List<List<Integer>> lottoList = publish.publishLottoNumber(boughtLotto);
+        print.boughtLottoList(lottoList);
+
         print.toInputWinningNumber();
         List<Integer> winningNumber =
                 convert.convertStringToIntegerList(read.readNumber());
