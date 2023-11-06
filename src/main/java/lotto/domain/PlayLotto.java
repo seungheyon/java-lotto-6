@@ -5,6 +5,7 @@ import lotto.userIO.Print;
 import lotto.userIO.Read;
 
 import java.util.List;
+import java.util.Map;
 
 public class PlayLotto {
 
@@ -12,6 +13,7 @@ public class PlayLotto {
     Convert convert = new Convert();
     Print print = new Print();
     Publish publish = new Publish();
+
 
     public void run(){
         print.toInputBuyAmount();
@@ -26,7 +28,9 @@ public class PlayLotto {
                 convert.convertStringToIntegerList(read.readNumber());
         print.toInputBonusNumber();
         int bonusNumber = Integer.parseInt(read.readNumber());
-
+        Lotto lotto = new Lotto(winningNumber);
+        Map<String, Integer> gradeMap = lotto.winLotto(lottoList, bonusNumber);
+        print.winningDetails(gradeMap);
     }
 
 }
