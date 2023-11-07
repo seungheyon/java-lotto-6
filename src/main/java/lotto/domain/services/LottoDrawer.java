@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.services;
 
-import lotto.contant.LottoEnum;
+import lotto.contants.LottoEnum;
 import lotto.view.Output;
 
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class LottoDrawer {
         this.output = output;
     }
 
-    public void draw(Map<Integer, List<Integer>> lottos, List<Integer> winningNumber, int bonusNumber){
+    public Map<LottoEnum.grade, Integer> draw(Map<Integer, List<Integer>> lottos, List<Integer> winningNumber, int bonusNumber){
         Map<LottoEnum.grade, Integer> gradeMap = initLottoGradeMap();
         for(List<Integer> lottoNumber : lottos.values()){
             int correct = (int)lottoNumber.stream().filter(winningNumber::contains).count();
@@ -29,6 +29,7 @@ public class LottoDrawer {
             }
         }
         output.printView(gradeMap);
+        return gradeMap;
     }
 
     private static Map<LottoEnum.grade, Integer> initLottoGradeMap(){

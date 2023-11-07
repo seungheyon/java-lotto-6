@@ -1,4 +1,4 @@
-package lotto.contant;
+package lotto.contants;
 
 public class LottoEnum {
     public enum grade{

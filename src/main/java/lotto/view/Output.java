@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.contant.LottoEnum;
-import lotto.contant.OutputEnum;
+import lotto.contants.LottoEnum;
+import lotto.contants.OutputEnum;
 import lotto.util.Printer;
 
 import java.util.Map;
@@ -31,5 +31,11 @@ public class Output {
         printer.println(OutputEnum.output.SIX_MATCH.getDescription()
                 +gradeMap.get(LottoEnum.grade.FIRST)
                 +OutputEnum.output.COUNT.getDescription());
+    }
+
+    public void printProfitRate(double profitRate){
+        printer.println(OutputEnum.output.PROFIT_RATE_IS.getDescription()
+        +profitRate
+        +OutputEnum.output.PERCENTAGE.getDescription());
     }
 }

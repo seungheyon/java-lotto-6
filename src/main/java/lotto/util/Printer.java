@@ -8,6 +8,10 @@ public class Printer {
         System.out.println(value);
     }
 
+    public void println(double value){
+        System.out.println(value);
+    }
+
     public void winningDetails(Map<String, Integer> gradeMap){
         System.out.println("당첨 통계");
         System.out.println("---");

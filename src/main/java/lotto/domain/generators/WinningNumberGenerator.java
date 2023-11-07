@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.generators;
 
-import lotto.contant.OutputEnum;
+import lotto.contants.OutputEnum;
 
 import java.util.List;
 

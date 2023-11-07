@@ -1,7 +1,11 @@
 package lotto.controller;
 
-import lotto.contant.OutputEnum;
+import lotto.contants.OutputEnum;
 import lotto.domain.*;
+import lotto.domain.generators.RandomLottoGenerator;
+import lotto.domain.generators.WinningNumberGenerator;
+import lotto.domain.services.Account;
+import lotto.domain.services.LottoDrawer;
 import lotto.util.Printer;
 import lotto.view.Output;
 
@@ -15,6 +19,7 @@ public class LottoController {
         LottoDrawer lottoDrawer = new LottoDrawer(new Output(new Printer()));
         RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
+        Account account = new Account(new Output(new Printer()));
 
         System.out.println("구입금액을 입력해 주세요.");
         int amount;
@@ -64,14 +69,16 @@ public class LottoController {
                 continue;
             }
             try {
-                BonusNumber bonusNumber = new BonusNumber(bonus, winningNumber);
+                Lotto lotto = new Lotto(winningNumber);
+                lotto.validateBonusNumberRange(bonus);
+                lotto.validateBonusNumberDuplicated(bonus);
                 break;
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
-
         }
         lottoDrawer.draw(lottos, winningNumber, bonus);
+        account.profitAccount(lottoDrawer.draw(lottos, winningNumber, bonus), amount);
     }
 }
