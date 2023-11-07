@@ -7,11 +7,9 @@ import java.util.List;
 
 public class Publish {
 
-    public List<List<Integer>> publishLottoNumber(int boughtLotto){
+    public List<List<Integer>> lottoNumber(int boughtLotto){
         List<List<Integer>> lottoNumbersList = new ArrayList<>();
-        for(int i=0;i<boughtLotto;i++){
-            lottoNumbersList.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        }
+
         return lottoNumbersList;
     }
 }
