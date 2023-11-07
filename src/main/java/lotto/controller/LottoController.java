@@ -1,8 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.LottoDrawer;
-import lotto.domain.RandomLottoGenerator;
-import lotto.domain.WinningNumberGenerator;
+import lotto.contant.OutputEnum;
+import lotto.domain.*;
 import lotto.util.Printer;
 import lotto.view.Output;
 
@@ -18,7 +17,16 @@ public class LottoController {
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
 
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(readLine());
+        int amount;
+        while(true){
+            try {
+                amount = Integer.parseInt(readLine());
+                break;
+            }
+            catch (NumberFormatException e){
+                System.out.println(OutputEnum.output.ERR_AMOUNT_MUST_BE_NUMBER.getDescription());
+            }
+        }
         int boughtLottoSize = amount/1000;
         System.out.println(boughtLottoSize+"개를 구매했습니다.");
         Map<Integer, List<Integer>> lottos = lottoGenerator.generate(boughtLottoSize);
@@ -27,11 +35,43 @@ public class LottoController {
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumber = winningNumberGenerator.generator(readLine());
+        List<Integer> winningNumber;
+        while (true){
+            try {
+                 winningNumber = winningNumberGenerator.generator(readLine());
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+            try {
+                Lotto lotto = new Lotto(winningNumber);
+                break;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(readLine());
+        int bonus;
+        while(true){
+            try {
+                 bonus = Integer.parseInt(readLine());
+            }
+            catch (NumberFormatException e){
+                System.out.println(OutputEnum.output.ERR_BONUS_MUST_BE_NUMBER.getDescription());
+                continue;
+            }
+            try {
+                BonusNumber bonusNumber = new BonusNumber(bonus, winningNumber);
+                break;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
 
-        lottoDrawer.draw(lottos, winningNumber, bonusNumber);
-
+        }
+        lottoDrawer.draw(lottos, winningNumber, bonus);
     }
 }
