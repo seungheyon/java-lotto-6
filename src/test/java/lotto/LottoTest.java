@@ -31,4 +31,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createBonusByOverMaxNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int testBonusNumber = 50;
+
+        assertThatThrownBy(() -> lotto.validateBonusNumberRange(testBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호에 로또 번호와 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createBonusByDuplicatedNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int testBonusNumber = 5;
+
+        assertThatThrownBy(() -> lotto.validateBonusNumberDuplicated(testBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

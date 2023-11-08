@@ -20,6 +20,7 @@ public class LottoController {
         RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
         Account account = new Account(new Output(new Printer()));
+        final int lottoPrice = 1000;
 
         System.out.println("구입금액을 입력해 주세요.");
         int amount;
@@ -32,7 +33,7 @@ public class LottoController {
                 System.out.println(OutputEnum.output.ERR_AMOUNT_MUST_BE_NUMBER.getDescription());
             }
         }
-        int boughtLottoSize = amount/1000;
+        int boughtLottoSize = amount/lottoPrice;
         System.out.println(boughtLottoSize+"개를 구매했습니다.");
         Map<Integer, List<Integer>> lottos = lottoGenerator.generate(boughtLottoSize);
         for(List<Integer> lottoNumber : lottos.values()){
