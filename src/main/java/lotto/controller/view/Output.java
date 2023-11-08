@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.controller.view;
 
 import lotto.contants.LottoEnum;
 import lotto.contants.OutputEnum;

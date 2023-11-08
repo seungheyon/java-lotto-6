@@ -1,7 +1,7 @@
 package lotto.domain.services;
 
 import lotto.contants.LottoEnum;
-import lotto.view.Output;
+import lotto.controller.view.Output;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +26,9 @@ public class LottoDrawer {
             }
             if(correct==5){
                 determine2ndOr3rd(gradeMap,lottoNumber, bonusNumber);
+            }
+            if(correct==6){
+                gradeMap.put(LottoEnum.grade.FIRST, gradeMap.get(LottoEnum.grade.FIRST)+1);
             }
         }
         output.printView(gradeMap);

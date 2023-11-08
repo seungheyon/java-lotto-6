@@ -7,7 +7,7 @@ import lotto.domain.generators.WinningNumberGenerator;
 import lotto.domain.services.Account;
 import lotto.domain.services.LottoDrawer;
 import lotto.util.Printer;
-import lotto.view.Output;
+import lotto.controller.view.Output;
 
 import java.util.List;
 import java.util.Map;
